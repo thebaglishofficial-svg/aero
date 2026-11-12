@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aéropostale Rewards Program</title>
+  <meta name="description" content="Share your opinion about Aéropostale and earn a gift card.">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+      background: #f8f8f6;
+      color: #1d2925;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; background: none; border: none; }
+
+    .page-shell {
+      background: #f8f8f6;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #ffffff 0%, #fafafa 52%, #f2f5f3 100%);
+      border-bottom: 1px solid #e7e7e4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 720px;
+      padding: 72px 24px 94px;
+      position: relative;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -150px;
+      right: -170px;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: #deeee8;
+      filter: blur(2px);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: min(100%, 730px);
+    }
+
+    .social-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid #dce6e1;
+      border-radius: 999px;
+      color: #4b655d;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .proof-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4da982;
+      box-shadow: 0 0 0 4px #dff1e8;
+    }
+
+    .logo-frame {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 270px;
+      height: 100px;
+      margin: 30px auto 18px;
+      background: #ffffff;
+    }
+
+    .brand-logo {
+      width: 260px;
+      height: auto;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+
+    .eyebrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      color: #4f776b;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+    }
+
+    .eyebrow svg { flex-shrink: 0; }
+
+    h1 {
+      margin: 12px 0 15px;
+      font-size: clamp(34px, 6vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      line-height: 1.03;
+      color: #1a1a1a;
+    }
+
+    .hero-copy {
+      width: min(100%, 590px);
+      margin: 0 auto;
+      color: #505854;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 42px 0 32px;
+      text-align: left;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 83px;
+      padding: 13px 11px;
+      border-top: 1px solid #d7dfdb;
+      color: #36423e;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #202c29;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .claim-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      min-width: 200px;
+      padding: 17px 25px;
+      background: #1d2925;
+      color: #fff;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .claim-button:hover {
+      background: #456b5d;
+      transform: translateY(-2px);
+    }
+
+    .claim-button svg { flex-shrink: 0; }
+
+    .fine-print {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin: 16px 0 0;
+      color: #8a908d;
+      font-size: 11px;
+    }
+
+    .fine-print svg { flex-shrink: 0; }
+
+    .faq-section {
+      width: min(100% - 48px, 730px);
+      margin: 0 auto;
+      padding: 88px 0 100px;
+    }
+
+    .section-label {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 7px;
+      color: #4f776b;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+    }
+
+    h2 {
+      margin: 13px 0 28px;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 1.15;
+    }
+
+    .faq-list {
+      border-top: 1px solid #dadfdb;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #dadfdb;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      padding: 22px 2px;
+      color: #202623;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .faq-question svg {
+      color: #6b7772;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.is-open .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      display: none;
+      color: #6e7471;
+      margin: -5px 34px 22px 2px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .faq-item.is-open .faq-answer {
+      display: block;
+    }
+
+    footer {
+      color: #929793;
+      text-align: center;
+      letter-spacing: 0.03em;
+      border-top: 1px solid #e1e3e1;
+      padding: 22px 24px 28px;
+      font-size: 11px;
+    }
+
+    footer span {
+      color: #4f776b;
+      padding: 0 7px;
+    }
+
+    @media (max-width: 620px) {
+      .hero-section {
+        align-items: flex-start;
+        min-height: 0;
+        padding: 28px 16px 48px;
+      }
+      .hero-content { width: 100%; }
+      .social-proof {
+        letter-spacing: 0.065em;
+        padding: 8px 11px;
+        font-size: 9px;
+      }
+      .logo-frame {
+        width: 220px;
+        height: 74px;
+        margin: 20px auto 14px;
+      }
+      .brand-logo { width: 208px; }
+      .eyebrow {
+        letter-spacing: 0.13em;
+        font-size: 9px;
+      }
+      h1 {
+        max-width: 340px;
+        margin: 10px auto 12px;
+        font-size: 36px;
+        line-height: 1.02;
+      }
+      .hero-copy {
+        max-width: 345px;
+        font-size: 14px;
+        line-height: 1.52;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: min(100%, 350px);
+        margin: 27px auto 24px;
+        text-align: left;
+      }
+      .step {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        min-height: 0;
+        padding: 13px 8px;
+        font-size: 14px;
+        line-height: 1.4;
+        border-top: 1px solid #d7dfdb;
+      }
+      .step-number {
+        width: 23px;
+        height: 23px;
+      }
+      .claim-button {
+        width: min(100%, 340px);
+        min-height: 52px;
+        padding: 15px 20px;
+      }
+      .fine-print {
+        margin-top: 12px;
+        font-size: 10px;
+      }
+      .faq-section {
+        width: min(100% - 32px, 730px);
+        padding: 28px 0 68px;
+      }
+      h2 {
+        margin: 10px 0 20px;
+        font-size: 29px;
+      }
+      .faq-question {
+        padding: 19px 0;
+        font-size: 14px;
+      }
+      footer {
+        padding: 18px 16px 24px;
+        line-height: 1.7;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero-section">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="social-proof">
+          <span class="proof-dot"></span>
+          3,500+ People Already Claimed
+        </div>
+
+        <div class="logo-frame">
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2819%29-BjbUZo0KVLLgk3qatkZFuJUxqEWHqn.png"
+            alt="Aéropostale"
+            class="brand-logo"
+            width="260"
+            height="80"
+          >
+        </div>
+
+        <div class="eyebrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+            <path d="M20 2v4"></path>
+            <path d="M22 4h-4"></path>
+            <circle cx="4" cy="20" r="2"></circle>
+          </svg>
+          YOUR OPINION MATTERS
+        </div>
+
+        <h1>Aéropostale Rewards Program</h1>
+
+        <p class="hero-copy">
+          Your opinions about Aéropostale matter. Help us improve the shopping experience and receive a gift card as our way of saying thanks.
+        </p>
+
+        <div class="steps" aria-label="How to claim your reward">
+          <div class="step">
+            <span class="step-number">1</span>
+            <span>Click “Claim Now”</span>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <span>Enter your email and basic info</span>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <span>Complete 4–5 deals</span>
+          </div>
+          <div class="step">
+            <span class="step-number">4</span>
+            <span>Enjoy your Aéropostale reward</span>
+          </div>
+        </div>
+
+        <a
+          class="claim-button"
+          href="https://giftclick.org/?offer_id=4468&aff_id=157440"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>CLAIM NOW</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 7v14"></path>
+            <path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
+            <path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"></path>
+            <rect x="3" y="7" width="18" height="4" rx="1"></rect>
+          </svg>
+        </a>
+
+        <p class="fine-print">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+          Completion of deals is required to claim your reward.
+        </p>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+        </svg>
+        NEED TO KNOW
+      </div>
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" type="button">
+            <span>How long do the deals take?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            Most participants complete the required deals in about 10–20 minutes. The exact time depends on which offers you choose.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" type="button">
+            <span>What are deals?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            Deals are simple sponsored offers (such as app installs, free trials, or short surveys) from our partners. Completing a small number of them confirms your eligibility for the reward.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" type="button">
+            <span>When will I receive my reward?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            After you finish the required deals, your reward is typically delivered by email within 24–48 hours, subject to verification.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Aéropostale Rewards <span>•</span> Participation subject to eligibility.
+    </footer>
+  </main>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.faq-item').forEach(el => {
+          el.classList.remove('is-open');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
